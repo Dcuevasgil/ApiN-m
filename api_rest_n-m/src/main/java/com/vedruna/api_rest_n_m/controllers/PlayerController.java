@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vedruna.api_rest_n_m.dto.CreatePlayerDTO;
+import com.vedruna.api_rest_n_m.dto.PlayerDTO;
 import com.vedruna.api_rest_n_m.persistance.models.Player;
 import com.vedruna.api_rest_n_m.services.PlayerServiceI;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/players")
+@RequestMapping("/players")
 public class PlayerController {
 
     @Autowired
@@ -34,12 +36,19 @@ public class PlayerController {
     }
 
     @PostMapping
-    public Player savePlayer(@RequestBody Player player) {
-        return playerService.savePlayer(player);
+    public Player createPlayer(@RequestBody CreatePlayerDTO createPlayerDTO) {
+        Player player = new Player();
+        player.setUsername(createPlayerDTO.getUsername());
+        return playerService.save(player);
     }
 
     @DeleteMapping("/{id}")
     public void deletePlayer(@PathVariable Long id) {
         playerService.deletePlayer(id);
+    }
+
+    @PostMapping("/{playerId}/trophies/{trophyId}")
+    public void awardTrophy(@PathVariable Long playerId, @PathVariable Long trophyId) {
+        playerService.awardTrophy(playerId, trophyId);
     }
 }

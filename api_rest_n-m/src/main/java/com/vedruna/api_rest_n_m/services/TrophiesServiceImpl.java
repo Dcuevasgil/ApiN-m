@@ -1,5 +1,6 @@
 package com.vedruna.api_rest_n_m.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,11 @@ public class TrophiesServiceImpl implements TrophiesServiceI {
     @Override
     public void deleteTrophy(Long id) {
         trophiesRepository.deleteById(id);
+    }
+
+    @Override
+    public Trophies save(Trophies trophy) {
+        // Inicializar la colección de jugadores
+        return trophiesRepository.save(trophy);
     }
 }

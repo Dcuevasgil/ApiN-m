@@ -9,4 +9,5 @@ public interface TrophiesServiceI {
     Trophies getTrophyById(Long id);
     Trophies saveTrophy(Trophies trophy);
     void deleteTrophy(Long id);
+    Trophies save(Trophies trophy); // Para crear un nuevo trofeo
 }

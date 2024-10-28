@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vedruna.api_rest_n_m.dto.CreateTrophiesDTO;
 import com.vedruna.api_rest_n_m.persistance.models.Trophies;
 import com.vedruna.api_rest_n_m.services.TrophiesServiceI;
 
@@ -36,6 +37,14 @@ public class TrophiesController {
     @PostMapping
     public Trophies saveTrophy(@RequestBody Trophies trophy) {
         return trophiesService.saveTrophy(trophy);
+    }
+
+    @PostMapping
+    public Trophies createTrophy(@RequestBody CreateTrophiesDTO createTrophiesDTO) {
+        Trophies trophy = new Trophies();
+        trophy.setTitle(createTrophiesDTO.getTitle());
+        trophy.setDescription(createTrophiesDTO.getDescription());
+        return trophiesService.save(trophy);
     }
 
     @DeleteMapping("/{id}")

@@ -7,6 +7,7 @@ import com.vedruna.api_rest_n_m.persistance.models.Player;
 public interface PlayerServiceI {
     List<Player> getAllPlayers();
     Player getPlayerById(Long id);
-    Player savePlayer(Player player);
+    Player save(Player player);
     void deletePlayer(Long id);
+    void awardTrophy(Long playerId, Long trophyId); 
 }
